@@ -14,13 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/test', function () {
     return view('example');
 });
 
-Route::post('/controllerTest', 'App\Http\Controllers\showCityController@show');
+Route::post('/tempNow', 'App\Http\Controllers\showtempnowController@showtempnow');
+
+Route::post('/twodayWeather', 'App\Http\Controllers\showtwodayweatherController@showtwodayweather');
+
+Route::post('/oneweekweather', 'App\Http\Controllers\oneweekweatherController@showoneweekweather');
+
+Route::post('/rain', 'App\Http\Controllers\showrainController@showrain');
 
 Auth::routes();

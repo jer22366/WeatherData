@@ -32,7 +32,6 @@ class showrainController extends Controller
                 $password="";
                 $pdo = new PDO($dsn,$username,$password);
 
-                $pdo->beginTransaction();
                 $sql = "Truncate table rain";
                 $truncate = $pdo->prepare($sql);
                 $truncate ->execute();
@@ -55,7 +54,6 @@ class showrainController extends Controller
                         ON city.cityid = rain.cityid where city.id =?";
                 $select = $pdo->prepare($sql);
                 $select->execute([$cityNumber]);
-                $pdo->commit();
 
                 $avgoneRain = 0;
                 $avgonedayRain = 0;

@@ -32,7 +32,6 @@ class showtwodayweatherController extends Controller
                 $password="";
                 $pdo = new PDO($dsn,$username,$password);
 
-                $pdo->beginTransaction();
                 $sql = "Truncate table twodayweather";
                 $truncate = $pdo->prepare($sql);
                 $truncate ->execute();
@@ -54,11 +53,21 @@ class showtwodayweatherController extends Controller
                         ON city.cityid = twodayweather.cityid where city.id =?";
                 $select = $pdo->prepare($sql);
                 $select->execute([$cityNumber]);
-                $pdo->commit();
                 $result = $select->fetchAll(PDO::FETCH_ASSOC);
-                unset($pdo);
+                for($i=0;$i<24;$i++){
+                    $spiltData = explode("。",$result[$i]['Description']);
+                    $resultData[$i]['cityid'] = $result[$i]['cityid'];
+                    $resultData[$i]['startTime'] = $result[$i]['startTime'];
+                    $resultData[$i]['endTime'] = $result[$i]['endTime'];
+                    $resultData[$i]['weather'] = $spiltData[0];
+                    $resultData[$i]['rainProbability'] = $spiltData[1];
+                    $resultData[$i]['temp'] = $spiltData[2];
+                    $resultData[$i]['tempFeel'] = $spiltData[3];
+                    $resultData[$i]['wind'] = $spiltData[4];
+                    $resultData[$i]['RelativeHumidity'] = $spiltData[5];
+                }
         }
-        return $result;
+        return $resultData;
     }
 }
         

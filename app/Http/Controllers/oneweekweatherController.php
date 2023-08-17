@@ -32,7 +32,6 @@ class oneweekweatherController extends Controller
                 $password="";
                 $pdo = new PDO($dsn,$username,$password);
 
-                $pdo->beginTransaction();
                 $sql = "Truncate table oneweekweather";
                 $truncate = $pdo->prepare($sql);
                 $truncate ->execute();
@@ -57,7 +56,6 @@ class oneweekweatherController extends Controller
                         ON city.cityid = oneweekweather.cityid where city.id =?";
                 $select = $pdo->prepare($sql);
                 $select->execute([$cityNumber]);
-                $pdo->commit();
                 $result = $select->fetchAll(PDO::FETCH_ASSOC);
                 
                 $min = 99;
@@ -70,8 +68,8 @@ class oneweekweatherController extends Controller
                         $max = $result[$i]['MaxT'];
                     }
                     if($i %2 == 1){
-                        $day = ['0','星期一','星期二','星期三','星期四','星期五','星期六','星期日'];
-                        $advData[($i+1)/2]['day'] = $day[($i+1)/2];
+                        $advData[($i+1)/2]['startTime'] = $result[$i-1]['startTime'];
+                        $advData[($i+1)/2]['endTime'] = $result[$i]['endTime'];
                         $advData[($i+1)/2]['cityid'] = $result[$i]['cityid'];
                         $advData[($i+1)/2]['minT'] = $min;
                         $advData[($i+1)/2]['maxT'] = $max;

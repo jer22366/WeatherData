@@ -32,7 +32,6 @@ class showtempnowController extends Controller
                 $password="";
                 $pdo = new PDO($dsn,$username,$password);
 
-                $pdo->beginTransaction();
                 $sql = "Truncate table tempnow";
                 $truncate = $pdo->prepare($sql);
                 $truncate ->execute();
@@ -53,7 +52,6 @@ class showtempnowController extends Controller
                         ON city.cityid = tempnow.cityid where city.id =?";
                 $select = $pdo->prepare($sql);
                 $select->execute([$cityNumber]);
-                $pdo->commit();
 
                 $cnt = 0;
                 $avgTemp = 0;

@@ -91,7 +91,7 @@
     <select v-model="selected2">
     <option disabled value="">請選擇</option>
     <option v-bind:value="1">當前天氣</option>
-    <option v-bind:value="2">未來兩天天氣詳細資訊</option>
+    <option v-bind:value="2">今明後天氣詳細資訊</option>
     <option v-bind:value="3">一週天氣預報</option>
     <option v-bind:value="4">雨量查詢</option>
     </select>

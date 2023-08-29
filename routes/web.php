@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('example');
+    return view('weather');
 });
 
 Route::post('/tempNow', 'App\Http\Controllers\showtempnowController@showtempnow');

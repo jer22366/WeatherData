@@ -87,18 +87,18 @@
     <option v-bind:value="22">嘉義市</option>
     </select>
   
-    <div id="selectedText">請選擇天氣:</div>
+    <div id="selectedText">請選擇:</div>
     <select v-model="selected2">
     <option disabled value="">請選擇</option>
     <option v-bind:value="1">當前天氣</option>
-    <option v-bind:value="2">明後兩天預報</option>
+    <option v-bind:value="2">未來兩天天氣詳細資訊</option>
     <option v-bind:value="3">一週天氣預報</option>
     <option v-bind:value="4">雨量查詢</option>
     </select>
   </div>
   
   <div id="weatherData">
-    <template v-if = 'selected2 == 1'>城市:@{{cityid}} 溫度:@{{temp}} 時間:@{{timeNow}}</template>
+    <template v-if = 'selected2 == 1'>城市:@{{cityid}} 溫度:@{{temp}}</template>
 
     <template v-if = 'selected2 == 2'>
   

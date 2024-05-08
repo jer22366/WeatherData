@@ -1,6 +1,6 @@
 # 前言
 須將weatherDb.txt 匯入資料庫程式才可運行
-
+程式使用php larvarl 和vue來撰寫
 # 畫面
 <br/>
 <br/>
